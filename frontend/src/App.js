@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { List } from './pages/List';
+import { FileBrowser } from './pages/FileBrowser/FileBrowser';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-          <Route path='/' element={<List/>}/>
+          <Route path='/' element={<FileBrowser/>}/>
       </Routes>
     </div>
   );
