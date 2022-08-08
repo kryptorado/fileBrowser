@@ -13,7 +13,14 @@ const folderSearch = (data, folderChain, currentFolder) => {
           folder.files.forEach((file) => {
             filesTemp = [
               ...filesTemp,
-              { id: file.id, name: file.name, isDir: file.isDir ? true : false, size: file.size }
+                {
+                    id: file.id,
+                    name: file.name,
+                    isDir: file.isDir ? true : false,
+                    size: file.size,
+                    modDate: file.modDate,
+                    childrenCount: file.childrenCount
+                }
             ];
           });
         }

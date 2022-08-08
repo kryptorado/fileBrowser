@@ -1,18 +1,23 @@
+
 import { useEffect, useState } from 'react';
-import { FullFileBrowser } from 'chonky';
+import { FullFileBrowser, ChonkyActions } from 'chonky';
 import { handleAction, folderSearch } from "./CustomActionHandler";
+
+let API_GET_FILES = "api/files"
 
 function FileBrowser() {
     const [data, setData] = useState([]);
     const [files, setFiles] = useState(null);
     const [folderChain, setFolderChain] = useState(null);
     const [currentFolder, setCurrentFolder] = useState("0");
+    const [loading, setLoading ] = useState(true);
 
     useEffect(() => {
-        fetch('api/files')
+        fetch(API_GET_FILES)
             .then(response => response.json())
             .then(response => {
                 setData(response)
+                setLoading(false)
             })
     }, []);
 
@@ -37,8 +42,13 @@ function FileBrowser() {
     }, [data, currentFolder]);
 
     return (
-        <div>
-            <FullFileBrowser files={files} folderChain={folderChain} onFileAction={handleActionWrapper} />
+        
+        <div style={{ height: "100vh" }}>
+            {loading ? (
+                <p>Loading Please wait...</p>
+            ) : (
+                <FullFileBrowser files={files} folderChain={folderChain} onFileAction={handleActionWrapper} defaultFileViewActionId={ChonkyActions.EnableListView.id} />
+            )}
         </div>
     );
   }
