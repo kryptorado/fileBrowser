@@ -1,5 +1,3 @@
-## FileBrowser Assignment for Qohash
-
 ## Project Preview
 
 ![alt text](FileBrowserList.PNG "List View")
